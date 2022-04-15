@@ -1,0 +1,7 @@
+<h1>MENU</h1>
+
+<?php foreach( $data['categories'] as $category ): ?>
+    <ul>
+        <li><a href="<?= BASEURL; ?>/menu/category/<?= $category['id']; ?>"><?= $category['name']; ?></a></li>
+    </ul>
+<?php endforeach ?>

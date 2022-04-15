@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="<?= BASEURL; ?>/css/bootstrap.css">
+
+    <title><?= $data['page_title'] ?></title>
+</head>
+<body>
+
+<ul>
+    <li>ID: <?= Auth::userId(); ?></li>
+    <li>User: <?= $_SESSION['user'] ?></li>
+    <li>Role: <?= $_SESSION['role'] ?></li>
+    <li>Flasher: <?= $_SESSION['flash'] ?></li>
+</ul>
+<hr>
+<nav>
+    <ul>
+        <?php if( Auth::isGuest() ): ?>
+            <li><a href="<?= BASEURL; ?>/auth/login">Login</a></li>
+            <li><a href="<?= BASEURL; ?>/auth/register">Register</a></li>
+        <?php else: ?>
+            <li><a href="<?= BASEURL; ?>/auth/logout">Logout</a></li>
+        <?php endif ?>
+    </ul>
+    <ul>
+        <li><a href="<?= BASEURL; ?>/">Home</a></li>
+        <li><a href="<?= BASEURL; ?>/menu">Menu</a></li>
+        <?php if( Auth::isUser() ): ?>
+            <li><a href="<?= BASEURL; ?>/order">My Order</a></li>
+        <?php endif ?>
+        <?php if( Auth::isAdmin() ): ?>
+            <li><a href="<?= BASEURL; ?>/admin">Admin Dashboard</a></li>
+        <?php endif ?>
+    </ul>
+</nav>
+<hr>

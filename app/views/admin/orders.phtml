@@ -1,0 +1,11 @@
+<h1>ORDERS</h1>
+
+<?php foreach( $data['orders'] as $order ): ?>
+    <ul>
+        <li><?= $order['time']; ?></li>
+        <li>Table: <?= $order['table_no']; ?></li>
+        <li>Status: <?= $order['completed']; ?></li>
+
+        <li><a href="<?= BASEURL; ?>/admin/order_details/<?= $order['id']; ?>">Details</a></li>
+    </ul>
+<?php endforeach ?>

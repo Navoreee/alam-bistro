@@ -1,0 +1,21 @@
+<h1>ORDER DETAILS</h1>
+
+<ul>
+    <li>Table: <?= $data['order']['table_no']; ?></li>
+    <li>Status: <?= $data['order']['completed']; ?></li>
+    <li>Ordered by: <?= $data['order']['name']; ?></li>
+    <li>Total price: <?= $data['order']['total_price']; ?></li>
+    <li>Time: <?= $data['order']['time']; ?></li>
+</ul>
+<hr>
+<?php foreach( $data['details'] as $detail ): ?>
+    <ul>
+        <li><?= $detail['name']; ?></li>
+        <li><?= $detail['quantity']; ?></li>
+        <li><?= $detail['subtotal']; ?></li>
+    </ul>
+<?php endforeach ?>
+
+<form action="<?= BASEURL ?>/admin/order_complete/<?= $data['order']['id']; ?>" method="POST">
+    <button type="submit">Mark as complete</button>
+</form>

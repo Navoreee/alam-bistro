@@ -1,0 +1,12 @@
+<h1>MESSAGES</h1>
+
+<table>
+    <?php foreach( $data['messages'] as $message ): ?>
+        <tr>
+            Sender: <?= $message['name']; ?> <br>
+            <?= $message['message']; ?> <br>
+            <a href="<?= BASEURL ?>/admin/message_details/<?= $message['id']; ?>">open</a> <br>
+        </tr>
+        <br>
+    <?php endforeach ?>
+</table>

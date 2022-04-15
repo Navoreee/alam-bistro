@@ -1,0 +1,16 @@
+<h1><?= $data['category']['name']; ?></h1>
+
+<?php Flasher::flash(); ?>
+
+<?php foreach( $data['foods'] as $food ): ?>
+    <ul>
+        <li>Name: <?= $food['name']; ?></li>
+        <li>Name: <?= $food['description']; ?></li>
+        <li>Name: <?= $food['price']; ?></li>
+        <li>Name: <?= $food['img_name']; ?></li>
+        <form action="<?= BASEURL ?>/order/detail_add/<?= $data['category']['id']; ?>/<?= $food['id']; ?>">
+            <button type="submit">add to order</button>
+        </form>
+
+    </ul>
+<?php endforeach ?>

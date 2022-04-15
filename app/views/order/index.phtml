@@ -1,0 +1,25 @@
+<h1>MY ORDER</h1>
+
+<?php Flasher::flash(); ?>
+
+<?php foreach( $data['details'] as $detail ): ?>
+    <ul>
+        <li>Name: <?= $detail['name']; ?></li>
+        <li>Quantity: <?= $detail['quantity']; ?></li>
+        <li>Subtotal: <?= $detail['subtotal']; ?></li>
+    </ul>
+<?php endforeach ?>
+
+<p>Order id = <?= $data['order']['id'] ?></p>
+
+<?php if( $data['total_price'] > 0 ): ?>
+    <p>Total Price: <?= $data['total_price'] ?></p>
+
+    <?php if( $data['order']['submitted'] == 0 ): ?>
+        <form action="<?= BASEURL ?>/order/submitOrder/<?= $data['order']['id'] ?>" method="POST">
+            <label for="table_no">Table no.</label>
+            <input type="text" id="table_no" name="table_no">
+            <button type="submit">Submit Order</button>
+        </form>
+    <?php endif ?>
+<?php endif ?>
