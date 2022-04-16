@@ -1,3 +1,24 @@
 <div class="container">
     <h1>HOME/INDEX</h1>
+
+    <hr>
+    <h3>Contact us</h3>
+    <form action="<?= BASEURL ?>/home/sendMessage" method="POST">
+        <label for="subject">Subject</label>
+        <input type="text" name="subject" id="subject">
+
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name">
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email">
+
+        <label for="number">Number</label>
+        <input type="text" id="number" name="number">
+
+        <label for="message">Message</label>
+        <textarea name="message" id="message" cols="30" rows="10"></textarea>
+
+        <button type="submit">Send</button>
+    </form>
 </div>

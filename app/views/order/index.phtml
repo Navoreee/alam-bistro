@@ -7,6 +7,11 @@
         <li>Name: <?= $detail['name']; ?></li>
         <li>Quantity: <?= $detail['quantity']; ?></li>
         <li>Subtotal: <?= $detail['subtotal']; ?></li>
+        <li><a href="<?= BASEURL ?>/order/detail_delete/<?= $detail['id'] ?>">Delete</a></li>
+        <form action="<?= BASEURL ?>/order/detail_update/<?= $detail['id'] ?>" method="POST">
+            <input type="text" name="quantity">
+            <button type="submit">update qty</button>
+        </form>
     </ul>
 <?php endforeach ?>
 

@@ -4,8 +4,6 @@ class OrderController extends Controller {
 
     public function index()
     {
-        //order_id = getCurrentOrder()
-        //getDetailsFoodWhere order_id = order_id
         $data['order'] = $this->currentOrder();
         $data['details'] = $this->model('OrderDetail')->getDetailsFoodWhere('d.order_id = '.$data['order']['id']);
 
@@ -64,6 +62,9 @@ class OrderController extends Controller {
         $data['id'] = $id;
 
         $this->model('OrderDetail')->updateDetail($data);
+
+        header('Location: ' . BASEURL . '/order');
+        exit;
     }
 
     public function detail_delete($id)
