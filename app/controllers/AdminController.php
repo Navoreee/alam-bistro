@@ -110,7 +110,19 @@ class AdminController extends Controller {
 
     public function menu_add()
     {
-        if( $this->model('MenuItem')->addItem($_POST) > 0 ) {
+        $file_size = $_FILES['image']['size'];
+        $file_tmp = $_FILES['image']['tmp_name'];
+        $file_type = $_FILES['image']['type'];
+        $file_ext=strtolower(end(explode('.',$_FILES['image']['name'])));
+
+        $file_name = uniqid().'.'.$file_ext;
+
+        $data = $_POST;
+        $data['img_name'] = $file_name;
+
+        move_uploaded_file($file_tmp, SITE_ROOT.'/images/'.$file_name);
+
+        if( $this->model('MenuItem')->addItem($data) > 0 ) {
             Flasher::setFlash('Successfully added.', 'success');
             header('Location: ' . BASEURL . '/admin/menu');
             exit;

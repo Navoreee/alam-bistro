@@ -2,7 +2,7 @@
 
 <?php Flasher::flash(); ?>
 
-<form action="<?= BASEURL ?>/admin/menu_add" method="POST">
+<form action="<?= BASEURL ?>/admin/menu_add" method="POST" enctype="multipart/form-data">
     <div>
         <label for="name">Name</label>
         <input type="text" name="name" id="name">
@@ -11,10 +11,7 @@
         <label for="description">Description</label>
         <textarea name="description" id="description" cols="30" rows="10"></textarea>
     </div>
-    <!-- <div>
-        <label for="category_id">Category</label>
-        <input type="text" name="category_id" id="category_id">
-    </div> -->
+
     <div>
         <label for="category_id">Category</label>
         <select name="category_id" id="category_id">
@@ -27,9 +24,10 @@
         <label for="price">Price</label>
         <input type="text" name="price" id="price">
     </div>
+
     <div>
-        <label for="img_name">Image</label>
-        <input type="text" name="img_name" id="img_name">
+        <label for="image">Image</label>
+        <input type="file" name="image" id="image">
     </div>
     <button type="submit">Add Menu Item</button>
 </form>
