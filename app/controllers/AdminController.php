@@ -86,6 +86,7 @@ class AdminController extends Controller {
     {
         Auth::authRole(array("admin"));
 
+        $data['categories'] = $this->model('Category')->getAllCategories();
         $data['items'] = $this->model('MenuItem')->getAllItems();
 
         $data['page_title'] = 'Admin Dashboard';
@@ -99,6 +100,7 @@ class AdminController extends Controller {
     {
         Auth::authRole(array("admin"));
 
+        $data['categories'] = $this->model('Category')->getAllCategories();
         $data['item'] = $this->model('MenuItem')->getItemById($id);
 
         $this->view('templates/auth/header', $data);

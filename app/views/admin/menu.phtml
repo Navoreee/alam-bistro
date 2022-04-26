@@ -11,9 +11,17 @@
         <label for="description">Description</label>
         <textarea name="description" id="description" cols="30" rows="10"></textarea>
     </div>
-    <div>
+    <!-- <div>
         <label for="category_id">Category</label>
         <input type="text" name="category_id" id="category_id">
+    </div> -->
+    <div>
+        <label for="category_id">Category</label>
+        <select name="category_id" id="category_id">
+            <?php foreach( $data['categories'] as $category ): ?>
+                <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
+            <?php endforeach ?>
+        </select>
     </div>
     <div>
         <label for="price">Price</label>
