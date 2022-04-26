@@ -1,30 +1,30 @@
 <h2>MENU DETAILS</h2>
 
-<h5><?= $data['food']['name'] ?></h5>
+<h5><?= $data['item']['name'] ?></h5>
 <ul>
-    <li>Price: <?= $data['food']['price'] ?></li>
+    <li>Price: <?= $data['item']['price'] ?></li>
 </ul>
 
-<form action="<?= BASEURL ?>/admin/menu_update/<?= $data['food']['id'] ?>" method="POST">
+<form action="<?= BASEURL ?>/admin/menu_update/<?= $data['item']['id'] ?>" method="POST">
     <div>
         <label for="name">Name</label>
-        <input type="text" name="name" id="name" value="<?= $data['food']['name'] ?>">
+        <input type="text" name="name" id="name" value="<?= $data['item']['name'] ?>">
     </div>
     <div>
         <label for="description">Description</label>
-        <textarea name="description" id="description" cols="30" rows="10"><?= $data['food']['description'] ?></textarea>
+        <textarea name="description" id="description" cols="30" rows="10"><?= $data['item']['description'] ?></textarea>
     </div>
     <div>
         <label for="category_id">Category</label>
-        <input type="text" name="category_id" id="category_id" value="<?= $data['food']['category_id'] ?>">
+        <input type="text" name="category_id" id="category_id" value="<?= $data['item']['category_id'] ?>">
     </div>
     <div>
         <label for="price">Price</label>
-        <input type="text" name="price" id="price" value="<?= $data['food']['price'] ?>">
+        <input type="text" name="price" id="price" value="<?= $data['item']['price'] ?>">
     </div>
     <div>
         <label for="img_name">Image</label>
-        <input type="text" name="img_name" id="img_name" value="<?= $data['food']['img_name'] ?>">
+        <input type="text" name="img_name" id="img_name" value="<?= $data['item']['img_name'] ?>">
     </div>
     <button type="submit">Save changes</button>
 </form>

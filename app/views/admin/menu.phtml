@@ -23,15 +23,15 @@
         <label for="img_name">Image</label>
         <input type="text" name="img_name" id="img_name">
     </div>
-    <button type="submit">Add Food</button>
+    <button type="submit">Add Menu Item</button>
 </form>
 <br><br>
-<?php foreach( $data['foods'] as $food ): ?>
-    <p><?= $food['name'] ?></p>
+<?php foreach( $data['items'] as $item ): ?>
+    <p><?= $item['name'] ?></p>
     <ul>
-        <li>Price: <?= $food['price'] ?></li>
-        <li>Category: <?= $food['category_id'] ?></li>
-        <li><a href="<?= BASEURL ?>/admin/menu_details/<?= $food['id'] ?>">edit</a></li>
-        <li><a href="<?= BASEURL ?>/admin/menu_delete/<?= $food['id'] ?>">delete</a></li>
+        <li>Price: <?= $item['price'] ?></li>
+        <li>Category: <?= $item['category_id'] ?></li>
+        <li><a href="<?= BASEURL ?>/admin/menu_details/<?= $item['id'] ?>">edit</a></li>
+        <li><a href="<?= BASEURL ?>/admin/menu_delete/<?= $item['id'] ?>">delete</a></li>
     </ul>
 <?php endforeach ?>

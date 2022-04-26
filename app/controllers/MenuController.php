@@ -16,7 +16,7 @@ class MenuController extends Controller {
     public function category($id)
     {
         $data['category'] = $this->model('Category')->getCategoryById($id);
-        $data['foods'] = $this->model('Food')->getFoodsWhere('category_id','=',$id);
+        $data['items'] = $this->model('MenuItem')->getItemsWhere('category_id','=',$id);
         
         $data['page_title'] = 'Menu';
 
@@ -27,7 +27,7 @@ class MenuController extends Controller {
 
     public function search($keyword)
     {
-        $data['foods'] = $this->model('Food')->getFoodsWhere('name','LIKE',"%$keyword%");
+        $data['items'] = $this->model('MenuItem')->getItemsWhere('name','LIKE',"%$keyword%");
 
         $data['page_title'] = 'Menu';
 

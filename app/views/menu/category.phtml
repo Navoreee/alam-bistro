@@ -2,13 +2,13 @@
 
 <?php Flasher::flash(); ?>
 
-<?php foreach( $data['foods'] as $food ): ?>
+<?php foreach( $data['items'] as $item ): ?>
     <ul>
-        <li>Name: <?= $food['name']; ?></li>
-        <li>Name: <?= $food['description']; ?></li>
-        <li>Name: <?= $food['price']; ?></li>
-        <li>Name: <?= $food['img_name']; ?></li>
-        <form action="<?= BASEURL ?>/order/detail_add/<?= $data['category']['id']; ?>/<?= $food['id']; ?>">
+        <li>Name: <?= $item['name']; ?></li>
+        <li>Name: <?= $item['description']; ?></li>
+        <li>Name: <?= $item['price']; ?></li>
+        <li>Name: <?= $item['img_name']; ?></li>
+        <form action="<?= BASEURL ?>/order/detail_add/<?= $data['category']['id']; ?>/<?= $item['id']; ?>">
             <button type="submit">add to order</button>
         </form>
 

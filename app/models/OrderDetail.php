@@ -32,12 +32,12 @@ class OrderDetail {
         return $this->db->single();
     }
 
-    public function getDetailsFoodWhere($cond)
+    public function getDetailsItemWhere($cond)
     {
-        $query = "SELECT d.id, d.food_id, f.name, f.price, d.quantity, d.subtotal
+        $query = "SELECT d.id, d.item_id, i.name, i.price, d.quantity, d.subtotal
                     FROM order_details d
-                    LEFT JOIN foods f
-                    ON f.id = d.food_id
+                    LEFT JOIN menu_items i
+                    ON i.id = d.item_id
                     WHERE $cond";
 
         $this->db->query($query);
@@ -46,11 +46,11 @@ class OrderDetail {
 
     public function addDetail($data)
     {
-        $query = 'INSERT INTO ' . $this->table . ' VALUES (null, :order_id, :food_id, :quantity, :subtotal)';
+        $query = 'INSERT INTO ' . $this->table . ' VALUES (null, :order_id, :item_id, :quantity, :subtotal)';
 
         $this->db->query($query);
         $this->db->bind('order_id', $data['order_id']);
-        $this->db->bind('food_id', $data['food_id']);
+        $this->db->bind('item_id', $data['item_id']);
         $this->db->bind('quantity', $data['quantity']);
         $this->db->bind('subtotal', $data['subtotal']);
 

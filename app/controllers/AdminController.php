@@ -26,7 +26,7 @@ class AdminController extends Controller {
         Auth::authRole(array("admin"));
 
         $data['order'] = $this->model('Order')->getOrderUserWhere('o.id = ' . $id);
-        $data['details'] = $this->model('OrderDetail')->getDetailsFoodWhere('d.order_id = ' . $id);
+        $data['details'] = $this->model('OrderDetail')->getDetailsItemWhere('d.order_id = ' . $id);
 
         $data['page_title'] = 'Admin Dashboard';
 
@@ -86,7 +86,7 @@ class AdminController extends Controller {
     {
         Auth::authRole(array("admin"));
 
-        $data['foods'] = $this->model('Food')->getAllFoods();
+        $data['items'] = $this->model('MenuItem')->getAllItems();
 
         $data['page_title'] = 'Admin Dashboard';
 
@@ -99,7 +99,7 @@ class AdminController extends Controller {
     {
         Auth::authRole(array("admin"));
 
-        $data['food'] = $this->model('Food')->getFoodById($id);
+        $data['item'] = $this->model('MenuItem')->getItemById($id);
 
         $this->view('templates/auth/header', $data);
         $this->view('admin/menu_details', $data);
@@ -108,7 +108,7 @@ class AdminController extends Controller {
 
     public function menu_add()
     {
-        if( $this->model('Food')->addFood($_POST) > 0 ) {
+        if( $this->model('MenuItem')->addItem($_POST) > 0 ) {
             Flasher::setFlash('Successfully added.', 'success');
             header('Location: ' . BASEURL . '/admin/menu');
             exit;
@@ -121,7 +121,7 @@ class AdminController extends Controller {
 
     public function menu_delete($id)
     {
-        if( $this->model('Food')->deleteFood($id) > 0 ) {
+        if( $this->model('MenuItem')->deleteItem($id) > 0 ) {
             Flasher::setFlash('Delete success.', 'success');
             header('Location: ' . BASEURL . '/admin/menu');
             exit;
@@ -137,7 +137,7 @@ class AdminController extends Controller {
         $data = $_POST;
         $data['id'] = $id;
 
-        if( $this->model('Food')->updateFood($data) > 0 ) {
+        if( $this->model('MenuItem')->updateItem($data) > 0 ) {
             Flasher::setFlash('Update success.', 'success');
             header('Location: ' . BASEURL . '/admin/menu');
             exit;

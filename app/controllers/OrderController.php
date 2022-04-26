@@ -5,7 +5,7 @@ class OrderController extends Controller {
     public function index()
     {
         $data['order'] = $this->currentOrder();
-        $data['details'] = $this->model('OrderDetail')->getDetailsFoodWhere('d.order_id = '.$data['order']['id']);
+        $data['details'] = $this->model('OrderDetail')->getDetailsItemWhere('d.order_id = '.$data['order']['id']);
 
         $data['total_price'] = 0;
 
@@ -20,17 +20,17 @@ class OrderController extends Controller {
         $this->view('templates/footer');
     }
 
-    public function detail_add($category_id, $food_id)
+    public function detail_add($category_id, $item_id)
     {
         $order = $this->currentOrder();
 
         $details = $this->model('OrderDetail')->getDetailsWhere('order_id','=',$order['id']);
-        $food = $this->model('Food')->getFoodById($food_id);
+        $item = $this->model('MenuItem')->getItemById($item_id);
 
         $exists = false;
 
         foreach ($details as $detail) {
-            if( $detail['food_id'] == $food_id ) {
+            if( $detail['item_id'] == $item_id ) {
                 $exists = true;
                 break;
             }
@@ -39,10 +39,10 @@ class OrderController extends Controller {
         if( $exists ) {
             Flasher::setFlash('Already exists in order. Go to My Orders to update the quantity.', 'warning');
         } else {
-            $data['food_id'] = $food_id;
+            $data['item_id'] = $item_id;
             $data['order_id'] = $order['id'];
             $data['quantity'] = 1;
-            $data['subtotal'] = $food['price'];
+            $data['subtotal'] = $item['price'];
             $this->model('OrderDetail')->addDetail($data);
             Flasher::setFlash('Added to order.', 'success');
         }

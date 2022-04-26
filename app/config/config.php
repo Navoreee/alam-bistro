@@ -1,6 +1,6 @@
 <?php
 
-define('BASEURL', 'http://localhost/alambistro/public');
+define('BASEURL', 'http://localhost/alam-bistro/public');
 
 // Database
 define('DB_HOST', 'localhost');

@@ -1,8 +1,8 @@
 <?php
 
-class Food {
+class MenuItem {
 
-    private $table = 'foods';
+    private $table = 'menu_items';
     private $db;
 
     public function __construct()
@@ -10,13 +10,13 @@ class Food {
         $this->db = new Database;
     }
 
-    public function getAllFoods()
+    public function getAllItems()
     {
         $this->db->query('SELECT * FROM ' . $this->table);
         return $this->db->resultSet();
     }
 
-    public function getFoodsWhere($col, $cond, $val)
+    public function getItemsWhere($col, $cond, $val)
     {
         $query = 'SELECT * FROM ' . $this->table . ' WHERE ' . $col . ' ' . $cond . ' :val';
 
@@ -25,16 +25,16 @@ class Food {
         return $this->db->resultSet();
     }
 
-    public function getFoodById($id)
+    public function getItemById($id)
     {
         $this->db->query('SELECT * FROM ' . $this->table . ' WHERE id=:id');
         $this->db->bind('id', $id);
         return $this->db->single();
     }
 
-    public function addFood($data)
+    public function addItem($data)
     {
-        $query = 'INSERT INTO ' . $this->table . ' VALUES (null, :name, :description, :category_id, :price, :img_name)';
+        $query = 'INSERT INTO ' . $this->table . ' VALUES (null, :category_id, :name, :description, :price, :img_name)';
 
         $this->db->query($query);
         $this->db->bind('name', $data['name']);
@@ -48,7 +48,7 @@ class Food {
         return $this->db->rowCount();
     }
 
-    public function deleteFood($id)
+    public function deleteItem($id)
     {
         $query = 'DELETE FROM ' . $this->table . ' WHERE id = :id';
 
@@ -60,7 +60,7 @@ class Food {
         return $this->db->rowCount();
     }
 
-    public function updateFood($data)
+    public function updateItem($data)
     {
         $query = "UPDATE $this->table SET
                     name = :name,
