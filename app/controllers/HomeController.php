@@ -1,6 +1,7 @@
 <?php
 
-class HomeController extends Controller {
+class HomeController extends Controller
+{
 
     public function index()
     {
@@ -13,10 +14,21 @@ class HomeController extends Controller {
 
     public function sendMessage()
     {
-        $this->model('Message')->addMessage($_POST);
+        $valid = $this->validate(
+            [
+                "subject" => "required",
+                "name" => "required",
+                "email" => "required",
+                "message" => "required"
+            ],
+            $_POST
+        );
+
+        if ($valid == true) {
+            $this->model('Message')->addMessage($_POST);
+        }
 
         header('Location: ' . BASEURL . '/');
         exit;
     }
-
 }

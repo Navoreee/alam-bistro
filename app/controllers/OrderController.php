@@ -1,11 +1,14 @@
 <?php
 
-class OrderController extends Controller {
+class OrderController extends Controller
+{
+
+    //TODO: Add user Auth:authrole()
 
     public function index()
     {
         $data['order'] = $this->currentOrder();
-        $data['details'] = $this->model('OrderDetail')->getDetailsItemWhere('d.order_id = '.$data['order']['id']);
+        $data['details'] = $this->model('OrderDetail')->getDetailsItemWhere('d.order_id = ' . $data['order']['id']);
 
         $data['total_price'] = 0;
 
@@ -24,19 +27,19 @@ class OrderController extends Controller {
     {
         $order = $this->currentOrder();
 
-        $details = $this->model('OrderDetail')->getDetailsWhere('order_id','=',$order['id']);
+        $details = $this->model('OrderDetail')->getDetailsWhere('order_id', '=', $order['id']);
         $item = $this->model('MenuItem')->getItemById($item_id);
 
         $exists = false;
 
         foreach ($details as $detail) {
-            if( $detail['item_id'] == $item_id ) {
+            if ($detail['item_id'] == $item_id) {
                 $exists = true;
                 break;
             }
         }
 
-        if( $exists ) {
+        if ($exists) {
             Flasher::setFlash('Already exists in order. Go to My Orders to update the quantity.', 'warning');
         } else {
             $data['item_id'] = $item_id;
@@ -55,7 +58,7 @@ class OrderController extends Controller {
     {
         $detail = $this->model('OrderDetail')->getDetailById($id);
         $new_qty = $_POST['quantity'];
-        $new_subtotal = ( $detail['subtotal'] / $detail['quantity'] ) * $new_qty;
+        $new_subtotal = ($detail['subtotal'] / $detail['quantity']) * $new_qty;
 
         $data['quantity'] = $new_qty;
         $data['subtotal'] = $new_subtotal;
@@ -78,7 +81,7 @@ class OrderController extends Controller {
     {
         $order = $this->model('Order')->getCurrentOrder(Auth::userId());
 
-        if( empty($order) ) {
+        if (empty($order)) {
             $this->model('Order')->addOrder();
             $order = $this->model('Order')->getCurrentOrder(Auth::userId());
         }
@@ -94,15 +97,15 @@ class OrderController extends Controller {
         $data['total_price'] = 0;
         $data['submitted'] = 1;
 
-        $details = $this->model('OrderDetail')->getDetailsWhere('order_id','=',$id);
+        $details = $this->model('OrderDetail')->getDetailsWhere('order_id', '=', $id);
 
         foreach ($details as $detail) {
             $data['total_price'] += $detail['subtotal'];
         }
 
-        if( $data['total_price'] > 0 ) {
-            
-            if( $this->model('Order')->updateOrder($data) > 0 ){
+        if ($data['total_price'] > 0) {
+
+            if ($this->model('Order')->updateOrder($data) > 0) {
                 Flasher::setFlash('Your order has been submitted.', 'success');
                 header('Location: ' . BASEURL . '/order');
                 exit;
@@ -113,5 +116,4 @@ class OrderController extends Controller {
             }
         }
     }
-
 }
