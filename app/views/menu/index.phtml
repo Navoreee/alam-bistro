@@ -7,13 +7,36 @@
                 </span>
             </div>
         </div>
-        <!-- TODO: make these manual instead, add the pictures -->
-        <?php foreach ($data['categories'] as $category) : ?>
-            <div class="row d-flex justify-content-center mb-4">
-                <a href="<?= BASEURL; ?>/menu/category/<?= $category['id']; ?>" class="col-11 col-lg-9 category m-0 shadow">
-                    <h2><?= $category['name']; ?></h2>
-                </a>
-            </div>
-        <?php endforeach ?>
+
+        <div class="row d-flex justify-content-center mb-4">
+            <a href="<?= BASEURL; ?>/menu/category/1" class="col-11 col-lg-9 category m-0 shadow" style="background-image: url(<?= BASEURL ?>/images/truly-asian.jpg);">
+                <h2>TRULY ASIA</h2>
+            </a>
+        </div>
+
+        <div class="row d-flex justify-content-center mb-4">
+            <a href="<?= BASEURL; ?>/menu/category/2" class="col-11 col-lg-9 category m-0 shadow" style="background-image: url(<?= BASEURL ?>/images/pasta-pizza.jpg);">
+                <h2>PASTA & PIZZA</h2>
+            </a>
+        </div>
+
+        <div class="row d-flex justify-content-center mb-4">
+            <a href="<?= BASEURL; ?>/menu/category/3" class="col-11 col-lg-9 category m-0 shadow" style="background-image: url(<?= BASEURL ?>/images/beef-fish.jpg);">
+                <h2>BEEF & FISH</h2>
+            </a>
+        </div>
+
+        <div class="row d-flex justify-content-center mb-4">
+            <a href="<?= BASEURL; ?>/menu/category/4" class="col-11 col-lg-9 category m-0 shadow" style="background-image: url(<?= BASEURL ?>/images/chicken-duck.jpg);">
+                <h2>CHICKEN & DUCK</h2>
+            </a>
+        </div>
+
+        <div class="row d-flex justify-content-center mb-4">
+            <a href="<?= BASEURL; ?>/menu/category/5" class="col-11 col-lg-9 category m-0 shadow" style="background-image: url(<?= BASEURL ?>/images/salad-soup.jpg);">
+                <h2>SOUP & SALAD</h2>
+            </a>
+        </div>
+
     </div>
 </section>

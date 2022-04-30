@@ -77,6 +77,8 @@
     align-items: center;
     text-decoration: none;
     transition: all 0.1s;
+    background-size: cover;
+    background-position: center;
 }
 
 .category > h2 {
