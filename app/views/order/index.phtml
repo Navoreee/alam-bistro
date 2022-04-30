@@ -1,30 +1,93 @@
-<h1>MY ORDER</h1>
+<section>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-12 text-center mb-4">
+                <span class="heading">
+                    <h2>MY ORDER</h2>
+                </span>
+            </div>
+        </div>
 
-<?php Flasher::flash(); ?>
+        <?php Flasher::flash(); ?>
 
-<?php foreach( $data['details'] as $detail ): ?>
-    <ul>
-        <li>Name: <?= $detail['name']; ?></li>
-        <li>Quantity: <?= $detail['quantity']; ?></li>
-        <li>Subtotal: <?= $detail['subtotal']; ?></li>
-        <li><a href="<?= BASEURL ?>/order/detail_delete/<?= $detail['id'] ?>">Delete</a></li>
-        <form action="<?= BASEURL ?>/order/detail_update/<?= $detail['id'] ?>" method="POST">
-            <input type="text" name="quantity">
-            <button type="submit">update qty</button>
-        </form>
-    </ul>
-<?php endforeach ?>
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-7">
+                <div class="card p-4 bg-light shadow">
+                    <?php foreach ($data['details'] as $detail) : ?>
+                        <div class="row pt-3" style="border-bottom: 1px solid #c2c2c2;">
+                            <div class="col-8">
+                                <p><?= $detail['name']; ?></p>
+                                <p style="font-weight: 500;"><span class="fw-light"><?= $detail['quantity'] ?> x </span> Rp. <?php echo number_format($detail['price']); ?></p>
+                            </div>
+                            <?php if ($data['order']['submitted'] == 0) : ?>
+                                <div class="col-4 d-flex align-items-center justify-content-end">
+                                    <div class="row">
+                                        <div class="col d-flex justify-content-end">
+                                            <button type="button" class="btn btn-edit" data-bs-toggle="modal" data-bs-target="#edit<?= $detail['id'] ?>">
+                                                EDIT
+                                            </button>
+                                        </div>
+                                        <div class="modal fade" id="edit<?= $detail['id'] ?>" tabindex="-1" aria-labelledby="labeledit<?= $detail['id'] ?>" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered modal-sm">
+                                                <div class="modal-content">
+                                                    <div class="modal-body p-4 text-center">
+                                                        <h5 class="fw-light mb-4"><?= $detail['name']; ?></h5>
+                                                        <form action="<?= BASEURL ?>/order/detail_update/<?= $detail['id'] ?>/" method="POST">
+                                                            <div class="input-group mb-4">
+                                                                <label for="quantity" class="input-group-text">Quantity:</label>
+                                                                <input type="number" id="quantity" class="form-control" name="quantity" step="1" min="1" value="<?= $detail['quantity'] ?>">
+                                                            </div>
+                                                            <button type="submit" class="btn btn-ab-orange w-100">SAVE</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col d-flex justify-content-end">
+                                            <form action="<?= BASEURL ?>/order/detail_delete/<?= $detail['id'] ?>/">
+                                                <button class="btn btn-delete"><i class="bi-trash-fill"></i></button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif ?>
+                        </div>
+                    <?php endforeach ?>
+                    <?php if ($data['total_price'] > 0) : ?>
+                        <div class="row mt-4">
+                            <div class="col-12 col-md-6">
+                                <h5>Total price</h5>
+                                <h2 style="color: #f79443">Rp. <?php echo number_format($data['total_price']); ?></h2>
+                            </div>
+                            <?php if ($data['order']['submitted'] == 0) : ?>
+                                <div class="col-12 col-md-6 d-flex justify-content-end align-items-end">
+                                    <button type="button" class="btn btn-ab-green mt-3 w-100" data-bs-toggle="modal" data-bs-target="#submitOrder">SUBMIT ORDER</button>
+                                </div>
+                                <div class="modal fade" id="submitOrder" tabindex="-1" aria-labelledby="submitLabel" aria-hidden="true">
+                                    <div class="modal-dialog modal-sm modal-dialog-centered">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="submitLabel">Table Number</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="<?= BASEURL ?>/order/submitOrder/<?= $data['order']['id'] ?>/" method="POST">
+                                                    <input type="text" name="table_no" class="form-control mb-3" required>
+                                                    <button type="submit" class="btn btn-ab-green w-100">SUBMIT</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            <?php endif ?>
+                        </div>
+                    <?php else : ?>
+                        <h5 class="text-center fw-light mt-2" style="color: #7a7a7a">Your order is still empty</h5>
+                    <?php endif ?>
+                </div>
 
-<p>Order id = <?= $data['order']['id'] ?></p>
+            </div>
+        </div>
+    </div>
 
-<?php if( $data['total_price'] > 0 ): ?>
-    <p>Total Price: <?= $data['total_price'] ?></p>
-
-    <?php if( $data['order']['submitted'] == 0 ): ?>
-        <form action="<?= BASEURL ?>/order/submitOrder/<?= $data['order']['id'] ?>" method="POST">
-            <label for="table_no">Table no.</label>
-            <input type="text" id="table_no" name="table_no">
-            <button type="submit">Submit Order</button>
-        </form>
-    <?php endif ?>
-<?php endif ?>
+</section>

@@ -13,7 +13,7 @@ class AuthController extends Controller
     {
         Auth::authRole();
         $data['page_title'] = 'Log In';
-        $this->view('templates/header', $data);
+        $this->view('templates/auth/header', $data);
         $this->view('auth/login');
         $this->view('templates/footer');
     }
@@ -51,7 +51,7 @@ class AuthController extends Controller
     {
         Auth::authRole();
         $data['page_title'] = 'Register';
-        $this->view('templates/header', $data);
+        $this->view('templates/auth/header', $data);
         $this->view('auth/register');
         $this->view('templates/footer');
     }

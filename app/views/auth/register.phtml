@@ -1,26 +1,64 @@
-<?php Flasher::flash(); ?>
-<h1>REGISTER</h1>
-<form action="<?= BASEURL; ?>/auth/processRegister" method="POST">
-    <div>
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email">
-        <?php Validator::showError('email'); ?>
-    </div>
-    <div>
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name">
-        <?php Validator::showError('name'); ?>
-    </div>
+<div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col col-xl-10">
+            <div class="card shadow" style="border-radius: 1rem;">
+                <div class="row g-0">
+                    <div class="col-md-6 col-lg-5 d-none d-md-block">
+                        <img src="<?= BASEURL ?>/images/login.jpg" alt="login form" class="img-fluid" style="border-radius: 1rem 0 0 1rem; height: 100%" />
+                    </div>
+                    <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                        <div class="card-body p-4 p-lg-5">
 
-    <div>
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password">
-        <?php Validator::showError('password'); ?>
+                            <form action="<?= BASEURL; ?>/auth/processRegister/" method="POST">
+
+                                <div class="mb-3 pb-1">
+                                    <a href="<?= BASEURL ?>/">
+                                        <span id="ab-logo">Alam Bistro & Cafe</span>
+                                    </a>
+                                </div>
+
+                                <h5 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Register an account</h5>
+
+                                <div class="form-floating mb-4">
+                                    <input type="email" id="email" name="email" class="form-control form-control-lg" placeholder="name@example.com">
+                                    <label for="email">Email address</label>
+                                    <div class="text-danger mt-1">
+                                        <?php Validator::showError('email'); ?>
+                                    </div>
+                                </div>
+                                <div class="form-floating mb-4">
+                                    <input type="text" id="name" name="name" class="form-control form-control-lg" placeholder="Name">
+                                    <label for="name">Name</label>
+                                    <div class="text-danger mt-1">
+                                        <?php Validator::showError('name'); ?>
+                                    </div>
+                                </div>
+                                <div class="form-floating mb-4">
+                                    <input type="password" id="password" name="password" class="form-control form-control-lg" placeholder="password">
+                                    <label for="password">Password</label>
+                                    <div class="text-danger mt-1">
+                                        <?php Validator::showError('password'); ?>
+                                    </div>
+                                </div>
+                                <div class="form-floating mb-4">
+                                    <input type="password" id="password" name="confirm_password" class="form-control form-control-lg" placeholder="password">
+                                    <label for="confirm_password">Confirm Password</label>
+                                    <div class="text-danger mt-1">
+                                        <?php Validator::showError('confirm_password'); ?>
+                                    </div>
+                                </div>
+                                <?php Flasher::flash(); ?>
+                                <div class="pt-1 mb-4">
+                                    <button type="submit" class="btn btn-ab-green" style="width: 100%;">REGISTER</button>
+                                </div>
+                                <p class="mb-5 pb-lg-2" style="color: #393f81;">Already have an account? <a href="<?= BASEURL ?>/auth/login" style="color: #393f81;">Log in here</a></p>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div>
-        <label for="confirm_password">Confirm Password</label>
-        <input type="password" id="password" name="confirm_password">
-        <?php Validator::showError('confirm_password'); ?>
-    </div>
-    <button type="submit">Register</button>
-</form>
+</div>

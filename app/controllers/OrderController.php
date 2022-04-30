@@ -39,6 +39,7 @@ class OrderController extends Controller
             }
         }
 
+        //TODO: Do check for IF order already submitted, cannot add more items
         if ($exists) {
             Flasher::setFlash('Already exists in order. Go to My Orders to update the quantity.', 'warning');
         } else {

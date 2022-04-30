@@ -12,6 +12,15 @@ class HomeController extends Controller
         $this->view('templates/footer');
     }
 
+    public function contact_us()
+    {
+        $data['page_title'] = 'Contact Us';
+
+        $this->view('templates/header', $data);
+        $this->view('contact_us', $data);
+        $this->view('templates/footer');
+    }
+
     public function sendMessage()
     {
         $valid = $this->validate(
@@ -28,7 +37,7 @@ class HomeController extends Controller
             $this->model('Message')->addMessage($_POST);
         }
 
-        header('Location: ' . BASEURL . '/');
+        header('Location: ' . BASEURL . '/home/contact_us');
         exit;
     }
 }

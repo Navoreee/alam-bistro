@@ -1,28 +1,84 @@
-<div class="container">
-    <h1>HOME/INDEX</h1>
+    <div class="jumbotron d-flex align-items-center shadow">
+        <div class="container text-center">
+            <h2>Welcome to</h2>
+            <h1>Alam Bistro & Cafe</h1>
+            <a href="<?= BASEURL; ?>/menu" class="btn btn-ab-orange">ORDER NOW</a>
+        </div>
+    </div>
 
-    <hr>
-    <h3>Contact us</h3>
-    <form action="<?= BASEURL ?>/home/sendMessage" method="POST">
-        <label for="subject">Subject</label>
-        <input type="text" name="subject" id="subject">
-        <?php Validator::showError('subject'); ?>
+    <section>
+        <div class="container py-5">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <span class="heading">
+                        <h2>OUR FAVORITES</h2>
+                    </span>
+                </div>
+            </div>
+            <div class="row mb-5">
+                <div class="col-sm-12 col-md-4 py-3">
+                    <div class="card h-100 shadow menu-item">
+                        <div style="height: 250px;">
+                            <img class="card-img-top" src="">
+                        </div>
+                        <div class="card-body text-center p-3">
+                            <h5 class="card-title">Titleee</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 py-3">
+                    <div class="card h-100 shadow menu-item">
+                        <div style="height: 250px;">
+                            <img class="card-img-top" src="">
+                        </div>
+                        <div class="card-body text-center p-3">
+                            <h5 class="card-title">Titleee</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-4 py-3">
+                    <div class="card h-100 shadow menu-item">
+                        <div style="height: 250px;">
+                            <img class="card-img-top" src="">
+                        </div>
+                        <div class="card-body text-center p-3">
+                            <h5 class="card-title">Titleee</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-ab-light">VIEW OUR MENU</button>
+            </div>
 
-        <label for="name">Name</label>
-        <input type="text" id="name" name="name">
-        <?php Validator::showError('name'); ?>
+        </div>
 
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email">
-        <?php Validator::showError('email'); ?>
+        <!-- <div class="container">
+            <h1>HOME/INDEX</h1>
 
-        <label for="number">Number</label>
-        <input type="text" id="number" name="number">
+            <hr>
+            <h3>Contact us</h3>
+            <form action="<?= BASEURL ?>/home/sendMessage/" method="POST">
+                <label for="subject">Subject</label>
+                <input type="text" name="subject" id="subject">
+                <?php Validator::showError('subject'); ?>
 
-        <label for="message">Message</label>
-        <textarea name="message" id="message" cols="30" rows="10"></textarea>
-        <?php Validator::showError('message'); ?>
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name">
+                <?php Validator::showError('name'); ?>
 
-        <button type="submit">Send</button>
-    </form>
-</div>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email">
+                <?php Validator::showError('email'); ?>
+
+                <label for="number">Number</label>
+                <input type="text" id="number" name="number">
+
+                <label for="message">Message</label>
+                <textarea name="message" id="message" cols="30" rows="10"></textarea>
+                <?php Validator::showError('message'); ?>
+
+                <button type="submit">Send</button>
+            </form>
+        </div> -->
+    </section>

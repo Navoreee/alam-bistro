@@ -1,16 +1,63 @@
-<h1><?= $data['category']['name']; ?></h1>
-
-<?php Flasher::flash(); ?>
-
-<?php foreach( $data['items'] as $item ): ?>
-    <ul>
-        <li>Name: <?= $item['name']; ?></li>
-        <li>Name: <?= $item['description']; ?></li>
-        <li>Name: <?= $item['price']; ?></li>
-        <li>Name: <?= $item['img_name']; ?></li>
-        <form action="<?= BASEURL ?>/order/detail_add/<?= $data['category']['id']; ?>/<?= $item['id']; ?>">
-            <button type="submit">add to order</button>
-        </form>
-
-    </ul>
-<?php endforeach ?>
+<section>
+    <div class="container py-5">
+        <?php Flasher::flash(); ?>
+        <div class="row">
+            <div class="col-12 text-center mb-4">
+                <span class="heading">
+                    <h2><?= $data['category']['name']; ?></h2>
+                </span>
+            </div>
+        </div>
+        <a href="<?= BASEURL ?>/menu" class="back">
+            <h4><i class="bi-arrow-left"></i> Back to categories</h4>
+        </a>
+        <div class="row">
+            <?php foreach ($data['items'] as $item) : ?>
+                <div class="col-sm-12 col-md-4 py-3">
+                    <div class="card h-100 shadow menu-item">
+                        <div style="height: 250px;">
+                            <img class="card-img-top" src="<?= BASEURL ?>/images/<?= $item['img_name'] ?>">
+                        </div>
+                        <div class="card-body text-center p-4">
+                            <h5 class="card-title mb-3"><?= $item['name']; ?></h5>
+                            <p class="card-text mb-4" style="color: #f79443"><strong>Rp. <?php echo number_format($item['price']); ?></strong></p>
+                            <button type="button" class="btn btn-ab-green" data-bs-toggle="modal" data-bs-target="#item<?= $item['id'] ?>">
+                                ADD TO ORDER
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="item<?= $item['id'] ?>" tabindex="-1" aria-labelledby="labelitem<?= $item['id'] ?>" aria-hidden="true">
+                    <div class="modal-dialog modal-xl modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body px-4 pb-5">
+                                <div class="container-fluid">
+                                    <div class="row g-3">
+                                        <div class="col-md-12 col-lg-6 d-none d-md-block" style="height: 400px">
+                                            <img class="modal-img" src="<?= BASEURL ?>/images/<?= $item['img_name'] ?>">
+                                        </div>
+                                        <div class="col-sm-12 col-lg-6 ps-0 ps-md-4 ps-lg-5">
+                                            <h3 class="mb-4"><?= $item['name'] ?></h3>
+                                            <h3 class="pb-1 mb-4" style="color: #f79443">Rp. <?php echo number_format($item['price']); ?></h3>
+                                            <p class="mb-5"><?= $item['description'] ?></p>
+                                            <?php if (Auth::isGuest()) : ?>
+                                                <a href="<?= BASEURL ?>/auth/login" class="btn btn-ab-outline" style="width: 100%">LOG IN TO ORDER</a>
+                                            <?php else : ?>
+                                                <form action="<?= BASEURL ?>/order/detail_add/<?= $data['category']['id']; ?>/<?= $item['id']; ?>/">
+                                                    <button type="submit" class="btn btn-ab-green" style="width: 100%">ADD TO ORDER</button>
+                                                </form>
+                                            <?php endif ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach ?>
+        </div>
+    </div>
+</section>

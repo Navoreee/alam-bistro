@@ -1,41 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="<?= BASEURL; ?>/css/bootstrap.css">
+    <link rel="stylesheet" href="<?= BASEURL; ?>/css/custom-styles.css">
 
     <title><?= $data['page_title'] ?></title>
 </head>
-<body>
 
-<ul>
-    <li>ID: <?= Auth::userId(); ?></li>
-    <li>User: <?= $_SESSION['user'] ?></li>
-    <li>Role: <?= $_SESSION['role'] ?></li>
-    <li>Flasher: <?= $_SESSION['flash'] ?></li>
-</ul>
-<hr>
-<nav>
-    <ul>
-        <?php if( Auth::isGuest() ): ?>
-            <li><a href="<?= BASEURL; ?>/auth/login">Login</a></li>
-            <li><a href="<?= BASEURL; ?>/auth/register">Register</a></li>
-        <?php else: ?>
-            <li><a href="<?= BASEURL; ?>/auth/logout">Logout</a></li>
-        <?php endif ?>
-    </ul>
-    <ul>
-        <li><a href="<?= BASEURL; ?>/">Home</a></li>
-        <li><a href="<?= BASEURL; ?>/menu">Menu</a></li>
-        <?php if( Auth::isUser() ): ?>
-            <li><a href="<?= BASEURL; ?>/order">My Order</a></li>
-        <?php endif ?>
-        <?php if( Auth::isAdmin() ): ?>
-            <li><a href="<?= BASEURL; ?>/admin">Admin Dashboard</a></li>
-        <?php endif ?>
-    </ul>
-</nav>
-<hr>
+<body id="user-pages">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow" id="user-nav">
+        <div class="container">
+            <a class="navbar-brand" href="<?= BASEURL; ?>/">Alam Bistro & Cafe</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item mx-lg-3">
+                        <a href="<?= BASEURL; ?>/" class="nav-link" aria-current="page">HOME</a>
+                    </li>
+                    <li class="nav-item mx-lg-3">
+                        <a href="<?= BASEURL; ?>/menu" class="nav-link" aria-current="page">MENU</a>
+                    </li>
+                    <li class="nav-item mx-lg-3">
+                        <a href="<?= BASEURL; ?>/home/contact_us" class="nav-link" aria-current="page">CONTACT US</a>
+                    </li>
+                </ul>
+                <?php if (Auth::isGuest()) : ?>
+                    <a href="<?= BASEURL; ?>/auth/login" class="btn btn-ab-green">LOG IN</a>
+                <?php endif ?>
+                <?php if (Auth::isGuest() == false) : ?>
+                    <a href="<?= BASEURL ?>/order" class="btn btn-ab-orange mx-lg-3 mb-2 mb-lg-0"><i class="bi-cart-fill"></i> MY ORDER</a>
+                    <div class="dropdown">
+                        <a href="#" class="btn btn-ab-outline dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi-person-circle"></i> <?= $_SESSION['user'] ?>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <?php if (Auth::isAdmin()) : ?>
+                                <li><a href="<?= BASEURL; ?>/admin" class="dropdown-item">Admin Dashboard</a></li>
+                            <?php endif ?>
+                            <li><a class="dropdown-item" href="<?= BASEURL ?>/auth/logout">Logout</a></li>
+                        </ul>
+                    </div>
+                <?php endif ?>
+            </div>
+        </div>
+    </nav>

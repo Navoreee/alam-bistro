@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="<?= BASEURL; ?>/css/bootstrap.css">
+
+    <title><?= $data['page_title'] ?></title>
+</head>
+<body>
+
+<ul>
+    <li>User: <?= $_SESSION['user'] ?></li>
+    <li>Role: <?= $_SESSION['role'] ?></li>
+    <li>Flasher: <?= $_SESSION['flash'] ?></li>
+</ul>
+<hr>
+<nav>
+    <ul>
+        <li><a href="<?= BASEURL; ?>/auth/logout">Logout</a></li>
+    </ul>
+    <ul>
+        <li><a href="<?= BASEURL; ?>/">RETURN TO SITE</a></li>
+        <li><a href="<?= BASEURL; ?>/admin/orders">Orders</a></li>
+        <li><a href="<?= BASEURL; ?>/admin/messages">Messages</a></li>
+        <li><a href="<?= BASEURL; ?>/admin/menu">Menu</a></li>
+    </ul>
+</nav>
+<hr>

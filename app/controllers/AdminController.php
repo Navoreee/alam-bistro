@@ -1,6 +1,7 @@
 <?php
 
-class AdminController extends Controller {
+class AdminController extends Controller
+{
 
     public function index()
     {
@@ -12,11 +13,11 @@ class AdminController extends Controller {
     {
         Auth::authRole(array("admin"));
 
-        $data['orders'] = $this->model('Order')->getOrdersWhere('submitted','=','1');
+        $data['orders'] = $this->model('Order')->getOrdersWhere('submitted', '=', '1');
 
         $data['page_title'] = 'Admin Dashboard';
 
-        $this->view('templates/auth/header', $data);
+        $this->view('templates/admin/header', $data);
         $this->view('admin/orders', $data);
         $this->view('templates/footer');
     }
@@ -30,7 +31,7 @@ class AdminController extends Controller {
 
         $data['page_title'] = 'Admin Dashboard';
 
-        $this->view('templates/auth/header', $data);
+        $this->view('templates/admin/header', $data);
         $this->view('admin/order_details', $data);
         $this->view('templates/footer');
     }
@@ -54,7 +55,7 @@ class AdminController extends Controller {
 
         $data['page_title'] = 'Admin Dashboard';
 
-        $this->view('templates/auth/header', $data);
+        $this->view('templates/admin/header', $data);
         $this->view('admin/messages', $data);
         $this->view('templates/footer');
     }
@@ -68,7 +69,7 @@ class AdminController extends Controller {
 
         $data['page_title'] = 'Admin Dashboard';
 
-        $this->view('templates/auth/header', $data);
+        $this->view('templates/admin/header', $data);
         $this->view('admin/message_details', $data);
         $this->view('templates/footer');
     }
@@ -91,7 +92,7 @@ class AdminController extends Controller {
 
         $data['page_title'] = 'Admin Dashboard';
 
-        $this->view('templates/auth/header', $data);
+        $this->view('templates/admin/header', $data);
         $this->view('admin/menu', $data);
         $this->view('templates/footer');
     }
@@ -103,7 +104,7 @@ class AdminController extends Controller {
         $data['categories'] = $this->model('Category')->getAllCategories();
         $data['item'] = $this->model('MenuItem')->getItemById($id);
 
-        $this->view('templates/auth/header', $data);
+        $this->view('templates/admin/header', $data);
         $this->view('admin/menu_details', $data);
         $this->view('templates/footer');
     }
@@ -113,16 +114,16 @@ class AdminController extends Controller {
         $file_size = $_FILES['image']['size'];
         $file_tmp = $_FILES['image']['tmp_name'];
         $file_type = $_FILES['image']['type'];
-        $file_ext=strtolower(end(explode('.',$_FILES['image']['name'])));
+        $file_ext = strtolower(end(explode('.', $_FILES['image']['name'])));
 
-        $file_name = uniqid().'.'.$file_ext;
+        $file_name = uniqid() . '.' . $file_ext;
 
         $data = $_POST;
         $data['img_name'] = $file_name;
 
-        move_uploaded_file($file_tmp, SITE_ROOT.'/images/'.$file_name);
+        move_uploaded_file($file_tmp, SITE_ROOT . '/images/' . $file_name);
 
-        if( $this->model('MenuItem')->addItem($data) > 0 ) {
+        if ($this->model('MenuItem')->addItem($data) > 0) {
             Flasher::setFlash('Successfully added.', 'success');
             header('Location: ' . BASEURL . '/admin/menu');
             exit;
@@ -135,7 +136,7 @@ class AdminController extends Controller {
 
     public function menu_delete($id)
     {
-        if( $this->model('MenuItem')->deleteItem($id) > 0 ) {
+        if ($this->model('MenuItem')->deleteItem($id) > 0) {
             Flasher::setFlash('Delete success.', 'success');
             header('Location: ' . BASEURL . '/admin/menu');
             exit;
@@ -151,7 +152,7 @@ class AdminController extends Controller {
         $data = $_POST;
         $data['id'] = $id;
 
-        if( $this->model('MenuItem')->updateItem($data) > 0 ) {
+        if ($this->model('MenuItem')->updateItem($data) > 0) {
             Flasher::setFlash('Update success.', 'success');
             header('Location: ' . BASEURL . '/admin/menu');
             exit;
