@@ -1,5 +1,50 @@
-<h1>MESSAGE DETAILS</h1>
+<div class="d-flex flex-column flex-shrink-0 px-3 py-4 text-white bg-dark position-fixed" style="width: 280px; height:100%">
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <a href="<?= BASEURL; ?>/admin/orders" class="nav-link text-white" aria-current="page">
+                <i class="bi bi-card-list me-3" style="font-size: 1.5rem;"></i>
+                Orders
+            </a>
+        </li>
+        <li>
+            <a href="<?= BASEURL; ?>/admin/messages" class="nav-link active">
+                <i class="bi bi-chat-dots me-3" style="font-size: 1.5rem;"></i>
+                Messages
+            </a>
+        </li>
+        <hr>
+        <li>
+            <a href="<?= BASEURL; ?>/admin/menu" class="nav-link text-white">
+                <i class="bi bi-journals me-3" style="font-size: 1.5rem;"></i>
+                Manage Menu
+            </a>
+        </li>
+    </ul>
+</div>
 
-Sender: <?= $data['message']['name']; ?> <br>
-Subject: <?= $data['message']['subject']; ?> <br>
-<?= $data['message']['message']; ?> <br>
+<section>
+    <a href="<?= BASEURL ?>/admin/messages" class="back">
+        <h4><i class="bi-arrow-left"></i> Back to messages</h4>
+    </a>
+
+    <div class="card mt-3">
+        <div class="card-body">
+            <div class="fs-5 mb-2">
+                <span class="d-inline-block" style="width: 100px">Sender:</span> <span class="fw-light"><?= $data['message']['name']; ?></span>
+            </div>
+            <div class="fs-5 mb-2">
+                <span class="d-inline-block" style="width: 100px">Subject:</span> <span class="fw-light"><?= $data['message']['subject']; ?></span>
+            </div>
+            <div class="fs-5 mb-2">
+                <span class="d-inline-block" style="width: 100px">Email:</span> <span class="fw-light"><?= $data['message']['email']; ?></span>
+            </div>
+            <div class="fs-5 mb-2">
+                <span class="d-inline-block" style="width: 100px">Phone:</span> <span class="fw-light"><?= $data['message']['number']; ?></span>
+            </div>
+
+            <textarea readonly class="mt-4 w-100 form-control-plaintext" style="height: 200px"><?= $data['message']['message']; ?></textarea>
+        </div>
+    </div>
+
+
+</section>

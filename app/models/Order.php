@@ -1,6 +1,7 @@
 <?php
 
-class Order {
+class Order
+{
 
     private $table = 'orders';
     private $db;
@@ -18,10 +19,10 @@ class Order {
 
     public function getOrdersWhere($col, $cond, $val)
     {
-        $query = 'SELECT * FROM ' . $this->table . ' WHERE ' . $col . ' ' . $cond . ' :val';
+        $query = 'SELECT * FROM ' . $this->table . ' WHERE ' . $col . ' ' . $cond . ' :val ORDER BY time DESC';
 
         $this->db->query($query);
-        $this->db->bind('val',$val);
+        $this->db->bind('val', $val);
         return $this->db->resultSet();
     }
 

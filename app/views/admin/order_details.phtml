@@ -1,21 +1,114 @@
-<h1>ORDER DETAILS</h1>
-
-<ul>
-    <li>Table: <?= $data['order']['table_no']; ?></li>
-    <li>Status: <?= $data['order']['completed']; ?></li>
-    <li>Ordered by: <?= $data['order']['name']; ?></li>
-    <li>Total price: <?= $data['order']['total_price']; ?></li>
-    <li>Time: <?= $data['order']['time']; ?></li>
-</ul>
-<hr>
-<?php foreach( $data['details'] as $detail ): ?>
-    <ul>
-        <li><?= $detail['name']; ?></li>
-        <li><?= $detail['quantity']; ?></li>
-        <li><?= $detail['subtotal']; ?></li>
+<div class="d-flex flex-column flex-shrink-0 px-3 py-4 text-white bg-dark position-fixed" style="width: 280px; height:100%">
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <a href="<?= BASEURL; ?>/admin/orders" class="nav-link active" aria-current="page">
+                <i class="bi bi-card-list me-3" style="font-size: 1.5rem;"></i>
+                Orders
+            </a>
+        </li>
+        <li>
+            <a href="<?= BASEURL; ?>/admin/messages" class="nav-link text-white">
+                <i class="bi bi-chat-dots me-3" style="font-size: 1.5rem;"></i>
+                Messages
+            </a>
+        </li>
+        <hr>
+        <li>
+            <a href="<?= BASEURL; ?>/admin/menu" class="nav-link text-white">
+                <i class="bi bi-journals me-3" style="font-size: 1.5rem;"></i>
+                Manage Menu
+            </a>
+        </li>
     </ul>
-<?php endforeach ?>
+</div>
 
-<form action="<?= BASEURL ?>/admin/order_complete/<?= $data['order']['id']; ?>" method="POST">
-    <button type="submit">Mark as complete</button>
-</form>
+<section>
+
+    <a href="<?= BASEURL ?>/admin/orders" class="back">
+        <h4><i class="bi-arrow-left"></i> Back to orders</h4>
+    </a>
+
+    <div class="row">
+        <div class="col-4">
+            <div class="card mt-3">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <span class="text-muted fs-5">Status</span>
+                    <?php if ($data['order']['completed'] == 1) : ?>
+                        <span class="fs-5">Completed</span>
+                    <?php else : ?>
+                        <span class="fs-5">Ongoing</span>
+                    <?php endif ?>
+                </div>
+            </div>
+            <div class=" card mt-3">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <span class="text-muted fs-5">Table no.</span>
+                    <span class="fs-5"><?= $data['order']['table_no']; ?></span>
+                </div>
+            </div>
+            <div class="card mt-3">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <span class="text-muted fs-5">Ordered by</span>
+                    <span class="fs-5"><?= $data['order']['name']; ?></span>
+                </div>
+            </div>
+            <div class="card mt-3">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <span class="text-muted fs-5">Order time</span>
+                    <span class="fs-5"><?= date_format(date_create($data['order']['time']), 'j F Y, g:ia') ?></span>
+                </div>
+            </div>
+            <div class="card mt-3">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <span class="text-muted fs-5">Total price</span>
+                    <span class="fs-5">Rp. <?= number_format($data['order']['total_price']); ?></span>
+                </div>
+            </div>
+            <?php if ($data['order']['completed'] == 0) : ?>
+                <div class="card mt-3">
+                    <div class="card-body p-4">
+                        <form action="<?= BASEURL ?>/admin/order_complete/<?= $data['order']['id']; ?>/" method="POST">
+                            <button type="submit" class="btn btn-ab-square fs-5 w-100">Mark as complete</button>
+                        </form>
+                    </div>
+                </div>
+            <?php endif ?>
+        </div>
+        <div class="col-8">
+            <div class="card mt-3">
+                <div class="card-body" style="min-height: 70vh;">
+                    <table class="table align-middle mb-0 bg-white">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Quantity</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($data['details'] as $detail) : ?>
+
+                                <tr>
+                                    <td class="py-3">
+                                        <?= $detail['name']; ?>
+                                    </td>
+                                    <td class="py-3">
+                                        <?= $detail['quantity']; ?>
+                                    </td>
+                                    <td class="py-3">
+                                        <?= $detail['subtotal']; ?>
+                                    </td>
+                                </tr>
+
+                            <?php endforeach ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</section>

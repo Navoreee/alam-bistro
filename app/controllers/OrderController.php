@@ -2,11 +2,10 @@
 
 class OrderController extends Controller
 {
-
-    //TODO: Add user Auth:authrole()
-
     public function index()
     {
+        Auth::authRole(array("admin", "user"));
+
         $data['order'] = $this->currentOrder();
         $data['details'] = $this->model('OrderDetail')->getDetailsItemWhere('d.order_id = ' . $data['order']['id']);
 
@@ -25,6 +24,8 @@ class OrderController extends Controller
 
     public function detail_add($category_id, $item_id)
     {
+        Auth::authRole(array("admin", "user"));
+
         $order = $this->currentOrder();
 
         $details = $this->model('OrderDetail')->getDetailsWhere('order_id', '=', $order['id']);
@@ -39,8 +40,9 @@ class OrderController extends Controller
             }
         }
 
-        //TODO: Do check for IF order already submitted, cannot add more items
-        if ($exists) {
+        if ($order['submitted'] == 1) {
+            Flasher::setFlash('Cannot add item because you already have an ongoing order.', 'warning');
+        } elseif ($exists) {
             Flasher::setFlash('Already exists in order. Go to My Orders to update the quantity.', 'warning');
         } else {
             $data['item_id'] = $item_id;
@@ -57,6 +59,8 @@ class OrderController extends Controller
 
     public function detail_update($id)
     {
+        Auth::authRole(array("admin", "user"));
+
         $detail = $this->model('OrderDetail')->getDetailById($id);
         $new_qty = $_POST['quantity'];
         $new_subtotal = ($detail['subtotal'] / $detail['quantity']) * $new_qty;
@@ -73,6 +77,8 @@ class OrderController extends Controller
 
     public function detail_delete($id)
     {
+        Auth::authRole(array("admin", "user"));
+
         $this->model('OrderDetail')->deleteDetail($id);
         header('Location: ' . BASEURL . '/order');
         exit;
@@ -80,6 +86,8 @@ class OrderController extends Controller
 
     public function currentOrder()
     {
+        Auth::authRole(array("admin", "user"));
+
         $order = $this->model('Order')->getCurrentOrder(Auth::userId());
 
         if (empty($order)) {
@@ -92,6 +100,8 @@ class OrderController extends Controller
 
     public function submitOrder($id)
     {
+        Auth::authRole(array("admin", "user"));
+
         $data['time'] = date('Y-m-d H:i:s');
         $data['id'] = $id;
         $data['table_no'] = $_POST['table_no'];

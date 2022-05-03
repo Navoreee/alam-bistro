@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="<?= BASEURL; ?>/css/bootstrap.css">
+    <link rel="stylesheet" href="<?= BASEURL; ?>/css/custom-styles.css">
 
     <title><?= $data['page_title'] ?></title>
 </head>
-<body>
 
-<ul>
-    <li>User: <?= $_SESSION['user'] ?></li>
-    <li>Role: <?= $_SESSION['role'] ?></li>
-    <li>Flasher: <?= $_SESSION['flash'] ?></li>
-</ul>
-<hr>
-<nav>
-    <ul>
-        <li><a href="<?= BASEURL; ?>/auth/logout">Logout</a></li>
-    </ul>
-    <ul>
-        <li><a href="<?= BASEURL; ?>/">RETURN TO SITE</a></li>
-        <li><a href="<?= BASEURL; ?>/admin/orders">Orders</a></li>
-        <li><a href="<?= BASEURL; ?>/admin/messages">Messages</a></li>
-        <li><a href="<?= BASEURL; ?>/admin/menu">Menu</a></li>
-    </ul>
-</nav>
-<hr>
+<body id="admin-pages">
+    <nav class="navbar navbar-expand-lg navbar-dark shadow fixed-top" id="admin-nav">
+        <div class="container-fluid">
+            <a href="<?= BASEURL ?>/" class="back">
+                <h4 class="mb-0"><i class="bi-arrow-left"></i> Back to site</h4>
+            </a>
+            <div class="dropdown ms-auto">
+                <a href="#" class="btn btn-ab-admin dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi-person-circle"></i> <?= $_SESSION['user'] ?>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><a class="dropdown-item" href="<?= BASEURL ?>/auth/logout">Logout</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>

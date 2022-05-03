@@ -1,11 +1,84 @@
-<h1>ORDERS</h1>
-
-<?php foreach( $data['orders'] as $order ): ?>
-    <ul>
-        <li><?= $order['time']; ?></li>
-        <li>Table: <?= $order['table_no']; ?></li>
-        <li>Status: <?= $order['completed']; ?></li>
-
-        <li><a href="<?= BASEURL; ?>/admin/order_details/<?= $order['id']; ?>">Details</a></li>
+<div class="d-flex flex-column flex-shrink-0 px-3 py-4 text-white bg-dark position-fixed" style="width: 280px; height:100%">
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <a href="<?= BASEURL; ?>/admin/orders" class="nav-link active" aria-current="page">
+                <i class="bi bi-card-list me-3" style="font-size: 1.5rem;"></i>
+                Orders
+            </a>
+        </li>
+        <li>
+            <a href="<?= BASEURL; ?>/admin/messages" class="nav-link text-white">
+                <i class="bi bi-chat-dots me-3" style="font-size: 1.5rem;"></i>
+                Messages
+            </a>
+        </li>
+        <hr>
+        <li>
+            <a href="<?= BASEURL; ?>/admin/menu" class="nav-link text-white">
+                <i class="bi bi-journals me-3" style="font-size: 1.5rem;"></i>
+                Manage Menu
+            </a>
+        </li>
     </ul>
-<?php endforeach ?>
+</div>
+
+<section>
+
+    <span class="admin-heading">Orders</span>
+
+    <div class="card mt-3">
+        <div class="card-ab-header d-flex justify-content-center">
+            <div class="d-inline">
+                <div class="input-group">
+                    <?php if (isset($data['filter']) && $data['filter'] == 0) : ?>
+                        <a href="<?= BASEURL ?>/admin/orders" class="btn btn-outline-secondary active" type="button">Ongoing</a>
+                    <?php else : ?>
+                        <a href="<?= BASEURL ?>/admin/orders_filter/0" class="btn btn-outline-secondary" type="button">Ongoing</a>
+                    <?php endif ?>
+                    <?php if ($data['filter'] == 1) : ?>
+                        <a href="<?= BASEURL ?>/admin/orders" class="btn btn-outline-secondary active" type="button">Completed</a>
+                    <?php else : ?>
+                        <a href="<?= BASEURL ?>/admin/orders_filter/1" class="btn btn-outline-secondary" type="button">Completed</a>
+                    <?php endif ?>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-body" style="min-height: 70vh;">
+
+            <table class="table align-middle mb-0 bg-white table-hover">
+                <thead>
+                    <tr>
+                        <th>Order time</th>
+                        <th>Table</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($data['orders'] as $order) : ?>
+                        <?php if (!isset($data['filter']) || $data['filter'] == $order['completed']) : ?>
+                            <tr onclick="window.location.assign('<?= BASEURL; ?>/admin/order_details/<?= $order['id']; ?>');">
+                                <td class="py-3">
+                                    <?= $order['time']; ?>
+                                </td>
+                                <td class="py-3">
+                                    <?= $order['table_no']; ?>
+                                </td>
+                                <td class="py-3">
+                                    <?php if ($order['completed'] == 1) : ?>
+                                        <span class="badge rounded-pill bg-warning">COMPLETED</span>
+                                    <?php else : ?>
+                                        <span class="badge rounded-pill bg-light text-dark">ONGOING</span>
+                                    <?php endif ?>
+                                </td>
+                            </tr>
+                        <?php endif ?>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+</section>

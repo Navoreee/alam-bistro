@@ -1,6 +1,7 @@
 <?php
 
-class Message {
+class Message
+{
 
     private $table = 'messages';
     private $db;
@@ -12,7 +13,7 @@ class Message {
 
     public function getAllMessages()
     {
-        $this->db->query('SELECT * FROM ' . $this->table);
+        $this->db->query('SELECT * FROM ' . $this->table . ' ORDER BY id DESC');
         return $this->db->resultSet();
     }
 
@@ -21,7 +22,7 @@ class Message {
         $query = 'SELECT * FROM ' . $this->table . ' WHERE ' . $col . ' ' . $cond . ' :val';
 
         $this->db->query($query);
-        $this->db->bind('val',$val);
+        $this->db->bind('val', $val);
         return $this->db->resultSet();
     }
 

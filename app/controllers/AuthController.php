@@ -15,7 +15,7 @@ class AuthController extends Controller
         $data['page_title'] = 'Log In';
         $this->view('templates/auth/header', $data);
         $this->view('auth/login');
-        $this->view('templates/footer');
+        $this->view('templates/footer_empty');
     }
 
     public function processLogin()
@@ -53,7 +53,7 @@ class AuthController extends Controller
         $data['page_title'] = 'Register';
         $this->view('templates/auth/header', $data);
         $this->view('auth/register');
-        $this->view('templates/footer');
+        $this->view('templates/footer_empty');
     }
 
     public function processRegister()

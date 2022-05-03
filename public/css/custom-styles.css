@@ -20,7 +20,52 @@
     font-weight: 500;
 }
 
+#admin-pages {
+    background-color: #f9f9fa;
+    min-width: 1200px;
+}
 
+#admin-pages section {
+    margin-left: 280px;
+    margin-top: 70px;
+    padding: 2rem;
+}
+
+#admin-nav {
+    background-color: #9CD863;
+    height: 70px;
+}
+
+#admin-pages .nav .nav-link {
+    display: flex;
+    align-items: center;
+}
+
+#admin-pages .nav .active {
+    background-color: #4f5761;
+}
+
+#admin-pages .card {
+    border-radius: 0.5rem;
+}
+
+#admin-pages .card-ab-header {
+    padding: 1rem;
+}
+
+#admin-pages .table-hover tbody tr:hover{
+    cursor: pointer;
+}
+
+#admin-pages .table tbody tr:last-child {
+    border-color: #ffffff;
+}
+
+.admin-heading {
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: #323a4b;
+}
 
 .back {
     text-decoration: none;
@@ -132,6 +177,19 @@
     background-color: #e9e9e9;
 }
 
+.btn-ab-admin {
+    background-color: #9CD863;
+    border: 2px solid #ffffff;
+    border-radius: 2em;
+    padding: 0.5rem 1.5rem;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.btn-ab-admin:hover {
+    color: #ffffff;
+}
+
 .btn-ab-orange {
     background-color: #f79443;
     border-radius: 2em;
@@ -170,6 +228,17 @@
     margin-bottom: 1rem;
 }
 
+.btn-ab-square {
+    background-color: #9CD863;
+    font-size: 1rem;
+}
+
+.btn-ab-square-light {
+    background-color: #f8f9fa;
+    border: 1px solid #c2c2c2;
+    font-size: 1rem;
+}
+
 .jumbotron {
     min-height: 400px;
     padding: 2rem 0rem;
@@ -202,3 +271,14 @@
     padding-bottom: 0.5rem;
     border-bottom: 2.5px solid #372B24;
 }
+
+.footer-icon {
+    font-size: 2.5rem;
+    margin: 0rem 1rem;
+    color: #f79443;
+}
+
+.footer-icon:hover {
+    color:#d67d34;
+}
+

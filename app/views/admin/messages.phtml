@@ -1,12 +1,58 @@
-<h1>MESSAGES</h1>
+<div class="d-flex flex-column flex-shrink-0 px-3 py-4 text-white bg-dark position-fixed" style="width: 280px; height:100%">
+    <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+            <a href="<?= BASEURL; ?>/admin/orders" class="nav-link text-white" aria-current="page">
+                <i class="bi bi-card-list me-3" style="font-size: 1.5rem;"></i>
+                Orders
+            </a>
+        </li>
+        <li>
+            <a href="<?= BASEURL; ?>/admin/messages" class="nav-link active">
+                <i class="bi bi-chat-dots me-3" style="font-size: 1.5rem;"></i>
+                Messages
+            </a>
+        </li>
+        <hr>
+        <li>
+            <a href="<?= BASEURL; ?>/admin/menu" class="nav-link text-white">
+                <i class="bi bi-journals me-3" style="font-size: 1.5rem;"></i>
+                Manage Menu
+            </a>
+        </li>
+    </ul>
+</div>
 
-<table>
-    <?php foreach( $data['messages'] as $message ): ?>
-        <tr>
-            Sender: <?= $message['name']; ?> <br>
-            <?= $message['message']; ?> <br>
-            <a href="<?= BASEURL ?>/admin/message_details/<?= $message['id']; ?>">open</a> <br>
-        </tr>
-        <br>
-    <?php endforeach ?>
-</table>
+<section>
+
+    <span class="admin-heading">Messages</span>
+
+    <div class="card mt-3">
+        <div class="card-body">
+            <table class="table align-middle mb-0 bg-white table-hover">
+                <tbody>
+                    <?php foreach ($data['messages'] as $message) : ?>
+                        <tr onclick="window.location.assign('<?= BASEURL; ?>/admin/message_details/<?= $message['id']; ?>');">
+                            <td class="py-3" style="width: 15%;">
+                                <?= $message['name']; ?>
+                            </td>
+                            <td class="py-3" style="width: 85%">
+                                <div class="d-flex align-items-center">
+                                    <?php if ($message['read_receipt'] == 0) : ?>
+                                        <i class="bi bi-circle-fill me-3" style="font-size: 0.6rem; color:#3f80e8"></i>
+                                    <?php endif ?>
+                                    <span class="d-inline-block text-truncate" style="max-width: 600px;">
+                                        <?= $message['subject'] ?> <i class="bi bi-dash-lg"></i> <span class="fw-light text-muted"><?= $message['message']; ?></span>
+                                    </span>
+                                </div>
+
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+</section>
