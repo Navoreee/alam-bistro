@@ -6,4 +6,4 @@ define('BASEURL', 'http://localhost/alam-bistro/public');
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
-define('DB_NAME', 'alambistro');
+define('DB_NAME', 'alambist_alambistro');
